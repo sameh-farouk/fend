@@ -34,7 +34,7 @@ app.post('/api', function (req, res) {
     var options = {
       'method': 'POST',
       'hostname': 'api.meaningcloud.com',
-      'path': `/sentiment-2.1?key=${process.env.API_KEY}&lang=auto&txt=${encodeURIComponent(req.body.formtext)}`,
+      'path': `/sentiment-2.1?key=${process.env.API_KEY}&lang=auto&url=${encodeURIComponent(req.body.formtext)}`,
       'headers': {
       },
       'maxRedirects': 20
