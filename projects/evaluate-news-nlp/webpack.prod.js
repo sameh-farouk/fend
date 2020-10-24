@@ -7,6 +7,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
+    output: {
+        libraryTarget: 'var',
+        library: 'Client'
+    },
     mode: 'production',
     module: {
         rules: [
@@ -27,9 +31,8 @@ module.exports = {
             filename: "./index.html",
         }),
         new MiniCssExtractPlugin({ filename: "[name].css" })
-
     ],
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    },
+    }
 }

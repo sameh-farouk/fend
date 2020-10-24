@@ -3,13 +3,20 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    checkForName(formText)
+    Client.checkForName(formText)
 
     console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
+    fetch('http://localhost:8081/api', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        body: JSON.stringify({'formtext': formText})
+    })
     .then(res => res.json())
     .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
+        document.getElementById('results').innerHTML = res.score_tag
     })
 }
 
