@@ -1,5 +1,4 @@
-function handleSubmit(event) {
-    event.preventDefault()
+async function handleSubmit(url) {
     let score_tag = {
         'P+': 'strong positive',
         'P': 'positive',
@@ -8,25 +7,21 @@ function handleSubmit(event) {
         'N+': 'strong negative',
         'NONE': 'without sentiment'
     }
-    // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    if (Client.checkForUrl(formText)) {
-        console.log("::: Form Submitted :::")
-        fetch('http://localhost:8081/api', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
-            body: JSON.stringify({'formtext': formText})
-        })
-        .then(res => res.json())
-        .then(function(res) {
-            document.getElementById('results').innerHTML = score_tag[res.score_tag]
-        })
-    }
-
-    
+    console.log("::: Form Submitted :::")
+    await fetch('http://localhost:8081/api', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        body: JSON.stringify({'formtext': url})
+    })
+    .then(function(res) {
+        return res.json();
+    })
+    .then(function(res) {
+        document.getElementById('results').innerText = score_tag[res.score_tag];
+    }).catch((err)=> console.log(err));
 }
 
 export { handleSubmit }

@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="/styles/footer.css">
     </head>
 
-    <body>
+    <body onload = "Client.main()">
 
         <header>
             <div class="">
@@ -23,9 +23,9 @@
 
         <main>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="url">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                <form id ="url-form">
+                    <input id="name" type="text" name="input" value="" placeholder="url">
+                    <input type="submit" name="" value="submit">
                 </form>
             <section>
 
@@ -38,6 +38,6 @@
         <footer>
             <p>This is a footer</p>
         </footer>
-
+    
     </body>
 </html>
